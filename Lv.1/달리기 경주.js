@@ -1,18 +1,18 @@
 function solution(players, callings) {
-    const hash = new Map();
+    const score = new Map();
     
     players.forEach((name, index) => {
-        hash.set(name, index);
+        score.set(name, index);
     })
     
     callings.forEach(name => {
-        const currIdx = hash.get(name);
-        const front = players[currIdx - 1];
+        const currentIdx = score.get(name);
+        const front = players[currentIdx - 1];
 
-        [players[currIdx], players[currIdx -1]] = [players[currIdx -1], players[currIdx]];
+        [players[currentIdx], players[currentIdx -1]] = [players[currentIdx -1], players[currentIdx]];
         
-        hash.set(name, hash.get(name) - 1);
-        hash.set(front, hash.get(name) + 1);
+        score.set(name, score.get(name) - 1);
+        score.set(front, score.get(name) + 1);
     })
     
     return players;
